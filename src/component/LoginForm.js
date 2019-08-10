@@ -1,8 +1,8 @@
 import React from 'react'
+import Hoc from './Hoc'
 
 
-
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
 
 
     constructor(props) {
@@ -13,7 +13,13 @@ export default class LoginForm extends React.Component {
         }
     }
 
+    componentWillMount(){
+        console.log("the super class's life cycle")
+    }
 
+    testRef = () =>{
+        console.log("测试高阶组建的特性")
+    }
 
     valueChange = (e) => {
         let key = e.target.name;
@@ -24,9 +30,8 @@ export default class LoginForm extends React.Component {
 
 
     submitForm = (e) => {
-        console.log("出发提交事件")
-        console.log(e)
-        alert("确定提交？")
+
+
     }
     render() {
         return (
@@ -38,7 +43,7 @@ export default class LoginForm extends React.Component {
                     <br />
                     <input type="input" value={this.state.user} onChange={(e)=>this.valueChange(e)} name="username" />
                     <br />
-                    <input type="input" value={this.state.password} onChange={(e)=>this.valueChange(e)} name="password" />
+                    <input type="input" value={this.state.password} onChange={(e)=>this.valueChange(e)} name="password" placeholder={this.props.newPassword} />
                     <br/>
                     <input type="submit" value="提交"/>
                 </form>
@@ -47,3 +52,5 @@ export default class LoginForm extends React.Component {
     }
 
 }
+
+export default Hoc(LoginForm)
