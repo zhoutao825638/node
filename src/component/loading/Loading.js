@@ -19,31 +19,27 @@ class Loading extends React.Component {
             this.setState({
                 success: true
             })
-        }, 3000)
+            const _this = this;
 
-        const _this = this;
-
-        axios.get('https://5b5e71c98e9f160014b88cc9.mockapi.io/api/v1/lists')
-            .then(function (response) {
-                console.log(response)
-                _this.setState({
-                    users: response.data,
-                    isLoaded: true
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-                _this.setState({
-                    isLoaded: false,
-                    error: error
+            axios.get('https://5b5e71c98e9f160014b88cc9.mockapi.io/api/v1/lists')
+                .then(function (response) {
+                    console.log(response)
+                    _this.setState({
+                        users: response.data,
+                        isLoaded: true
+                    });
                 })
-            })
-        console.log(_this.state.users)
-        console.error("数据已更新")
-    }
+                .catch(function (error) {
+                    console.log(error);
+                    _this.setState({
+                        isLoaded: false,
+                        error: error
+                    })
+                })
+            console.log(_this.state.users)
+            console.error("数据已更新")
+        }, 3000);
 
-    getDataFromNetwork = () => {
-        console.log("数据已更新")
     }
 
     render() {
